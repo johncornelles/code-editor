@@ -45,3 +45,4 @@ This project is a comprehensive web application featuring a powerful code editor
 - **MongoDB**: NoSQL database for storing data.
 - **Express.js**: Web framework for Node.js.
 - **Node.js**: JavaScript runtime for server-side code.
+- **Socket.io**: realtime communication
