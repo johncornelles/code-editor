@@ -1,5 +1,3 @@
-Certainly! Here's a sample `README.md` file for a project featuring a code editor with React, Monaco Editor, Chakra UI, Tailwind CSS, and DaisyUI, along with a CRUD-based code snippet sharing functionality built with the MERN stack.
-
 ---
 
 # Code Editor Project
