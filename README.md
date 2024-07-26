@@ -2,6 +2,8 @@
 
 # Code Editor Project
 
+
+
 ## Overview
 
 This project is a comprehensive web application featuring a powerful code editor and a code snippet sharing platform. The code editor is built using React and integrates Monaco Editor for advanced code editing capabilities. The user interface is styled using Chakra UI, Tailwind CSS, and DaisyUI. Additionally, the application supports CRUD operations for sharing code snippets, implemented using the MERN stack (MongoDB, Express.js, React, and Node.js).
@@ -46,3 +48,8 @@ This project is a comprehensive web application featuring a powerful code editor
 - **Express.js**: Web framework for Node.js.
 - **Node.js**: JavaScript runtime for server-side code.
 - **Socket.io**: realtime communication
+
+**Team**
+  - **John Cornellews**
+  - **Prema Priya**
+
