@@ -1,0 +1,98 @@
+/* Container styling */
+.editor-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #333;
+    background-color: #1e1e1e; /* Dark background */
+    border-radius: 8px;
+    color: #ffffff; /* White text */
+  }
+  
+  /* Button styling */
+  .editor-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .toggle-button,
+  .submit-button {
+    padding: 8px 16px;
+    border: 1px solid #555;
+    background-color: #2e2e2e;
+    color: #ffffff;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+  }
+  
+  .toggle-button:hover,
+  .submit-button:hover {
+    background-color: #444;
+  }
+  
+  /* Custom Quill Editor styling */
+  .custom-quill-editor .ql-container {
+    font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    background-color: #1e1e1e; /* Dark background for editor */
+    color: #ffffff; /* White text */
+    border: 1px solid #333;
+    border-radius: 4px;
+    padding: 16px;
+    min-height: 300px;
+    overflow: auto;
+  }
+  
+  /* Styling for code blocks */
+  .custom-quill-editor .ql-editor pre {
+    background-color: #2d2d2d;
+    padding: 10px;
+    border-radius: 4px;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    overflow-x: auto;
+    color: #ffffff; /* White text for code blocks */
+  }
+  
+  /* Toolbar styling */
+  .custom-quill-editor .ql-toolbar {
+    border: 1px solid #333;
+    border-bottom: none;
+    background-color: #2e2e2e;
+    border-radius: 4px 4px 0 0;
+    padding: 5px;
+  }
+  
+  /* Toolbar button styling */
+  .custom-quill-editor .ql-toolbar button {
+    background: none;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    color: #ffffff; 
+  }
+  
+  .custom-quill-editor .ql-toolbar button:hover {
+    background-color: #444;
+  }
+  
+  .custom-quill-editor .ql-toolbar button.ql-active {
+    color: #0366d6;
+    background-color: transparent;
+    border-bottom: 2px solid #0366d6;
+  }
+  
+  /* Preview container styling */
+  .preview-container {
+    border: 1px solid #333;
+    padding: 16px;
+    border-radius: 4px;
+    background-color: #1e1e1e;
+    color: #ffffff;
+    min-height: 300px;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  
