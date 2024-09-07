@@ -1,19 +1,47 @@
 import { create } from 'zustand';
 import axios from 'axios';
+import Cookies from "js-cookie"
 
 export const useStore = create((set, get) => ({
-    // State variables
+
+    // auth
+    userID: Cookies.get("userID") || "",
+    setUserID: (id) => set({userID: id}),
+    username: Cookies.get("username") || "", 
+    setUsername: (username) => set({username: username}),
+    user: {},
+    setUser: (credentials) => 
+        set({
+            user: credentials
+        }),
+    token: Cookies.get("jwt") || null,
+    setToken: (token) => set({
+        token
+    }),
+    // snippets
+    snippets: [],
+    setSnippets: (snippets) => {
+        set({
+            snippets: snippets
+        })
+    },
+    snippetToBeEditedOrDeleted: "",
+    setSnippetToBeEditedOrDeleted: (snippet) => set({snippetToBeEditedOrDeleted: snippet}),
+    // editor
     language: "javascript",
     code: '', 
     languages: {}, // Initialize languages as an empty object
     API: axios.create({
         baseURL: "https://emkc.org/api/v2/piston/"
-}),
-    // Setters
+    }),
+    backend: axios.create({
+        baseURL: "http://localhost:3000/"
+    }),
+
     setLanguage: (lang) => set({ language: lang }),
     setCode: (code) => set({ code }),
 
-    // Static code snippets
+
     CODE_SNIPPETS: {
         javascript: `
 function greet(name) {
@@ -202,8 +230,8 @@ _start:
         } catch (error) {
             console.error("Failed to fetch languages:", error.message);
         }
-    }
+    },
+    
 }));
 
-// Fetch languages when the store is created
 useStore.getState().fetchLanguages();

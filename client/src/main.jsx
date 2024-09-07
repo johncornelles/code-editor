@@ -1,16 +1,18 @@
-// main.jsx or index.jsx
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App.jsx';
 import { ChakraProvider } from '@chakra-ui/react';
-import  theme  from './theme.js';
-import "./index.css"
+import theme from './theme.js';
+import "./index.css";
+import { BrowserRouter } from 'react-router-dom';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    {/* convert this to chakra base provider to reduce load time once the project is done */}
+    {/* Convert this to Chakra's BaseProvider to reduce load time once the project is done */}
     <ChakraProvider theme={theme}>
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </ChakraProvider>
-  </StrictMode>,
+  </StrictMode>
 );
