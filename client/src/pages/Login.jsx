@@ -13,9 +13,12 @@ import {
 } from '@chakra-ui/react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { useForm } from "react-hook-form";
+import useLogin from '../hooks/useLogin';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const nav = useNavigate();
   const { 
     register, 
     handleSubmit, 
@@ -23,9 +26,16 @@ const Login = () => {
   } = useForm();
 
   const handleShowClick = () => setShowPassword(!showPassword);
+  const { login, loading } = useLogin();
 
   const onSubmit = async (data) => {
-    console.log(data);
+    try {
+      const res = await login(data);
+      console.log(res);
+      nav("/");
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   return (
@@ -81,6 +91,11 @@ const Login = () => {
         <Button colorScheme="blue" width="full" mt={4} type="submit">
           Login
         </Button>
+
+        {/* Navigate to SignUp */}
+        <Text mt={4} textAlign="center">
+          New user? <Text as="span" color="blue.500" cursor="pointer" onClick={() => nav('/signup')}>Sign Up</Text>
+        </Text>
       </Box>
     </form>
   );

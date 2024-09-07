@@ -29,7 +29,6 @@ const CodeEditor = () => {
     <Box>
       <HStack spacing={4}>
         <Box width="50%">
-          <Languages />
           <Editor
             height="90vh"
             onMount={onMount}

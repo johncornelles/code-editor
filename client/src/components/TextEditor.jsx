@@ -1,74 +1,52 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css"; 
+import "react-quill/dist/quill.snow.css";
 import "./TextEditor.css";
 
 const modules = {
   toolbar: [
     [{ header: [1, 2, 3, false] }],
-    ["bold", "italic", "underline", "strike"], 
-    [{ list: "ordered" }, { list: "bullet" }], 
-    ["link", "blockquote", "code-block"], 
-    ["clean"], 
+    ["bold", "italic", "underline", "strike"],
+    [{ list: "ordered" }, { list: "bullet" }],
+    ["link", "blockquote", "code-block"],
+    ["clean"],
   ],
 };
 
 const formats = [
-  "header",
-  "bold",
-  "italic",
-  "underline",
-  "strike",
-  "list",
-  "bullet",
-  "link",
-  "blockquote",
-  "code-block",
+  "header", "bold", "italic", "underline", "strike",
+  "list", "bullet", "link", "blockquote", "code-block"
 ];
 
-const TextEditor = () => {
+const TextEditor = ({ isReadOnly = false, snippet = {} }) => {
   const [editorContent, setEditorContent] = useState(""); 
-  const [isEditMode, setIsEditMode] = useState(true); 
+  const [isEditMode, setIsEditMode] = useState(true);
+  const quillRef = useRef(null); 
 
-  const handleToggleMode = () => {
-    setIsEditMode(!isEditMode);
-  };
-
-  const handleSubmit = () => {
-    alert(`Submitted Content: \n${editorContent}`);
-  };
+  const handleToggleMode = () => setIsEditMode(prev => !prev);
 
   return (
     <div className="editor-container">
-      <h2>GitHub-like Text Editor in React</h2>
-      <div className="editor-controls">
-        <button onClick={handleToggleMode} className="toggle-button">
-          {isEditMode ? "Preview" : "Edit"}
-        </button>
-        <button onClick={handleSubmit} className="submit-button">
-          Submit
-        </button>
-      </div>
-      {isEditMode ? (
-        <ReactQuill
-          value={editorContent}
-          onChange={setEditorContent}
-          modules={modules}
-          formats={formats}
-          theme="snow"
-          placeholder="Write something like in GitHub README..."
-          className="custom-quill-editor"
-        />
-      ) : (
-        <ReactQuill
-        readOnly
-        value={editorContent}
-        modules={modules}
-        formats={formats}
-        theme="snow"
-        className="custom-quill-editor"
-        />
+      {!isReadOnly && (
+        <div className="editor-controls">
+          <button onClick={handleToggleMode} className="toggle-button">
+            {isEditMode ? "Preview" : "Edit"}
+          </button>
+          <button onClick={() => console.log(editorContent)} className="submit-button">
+            Submit
+          </button>
+        </div>
       )}
+      <ReactQuill
+        ref={quillRef}
+        value={isReadOnly ? snippet.snippet : editorContent}
+        onChange={setEditorContent}
+        modules={isReadOnly ? {} : modules} 
+        formats={ isReadOnly ? {} : formats}
+        theme="snow"
+        readOnly={isReadOnly || !isEditMode}
+        className="custom-quill-editor"
+      />
     </div>
   );
 };

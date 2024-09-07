@@ -4,15 +4,14 @@ import { config } from "dotenv";
 import { db } from "./config/DB.js";
 import { authRouter } from "./routes/auth.routes.js";
 import { snippetRouter } from "./routes/posts.routes.js";
-
+import cors from "cors"
 config()
+
 const app = express();
+app.use(cors());
 app.use(express.json())
 const PORT = 3000;
 
-
-
-// Start the server and listen on the defined port
 
 const start = async () => {
   try {

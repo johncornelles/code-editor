@@ -1,6 +1,7 @@
 import { Box, Menu, MenuButton, MenuItem, Button, MenuList, Text } from '@chakra-ui/react';
 import React from 'react';
 import { useStore } from '../store/store';
+import { ChevronDownIcon } from '@chakra-ui/icons';
 
 const Languages = () => {
     const { language, setLanguage, languages, CODE_SNIPPETS, setCode } = useStore();
@@ -14,7 +15,7 @@ const Languages = () => {
     return (
         <Box>
             <Menu>
-                <MenuButton as={Button}>
+                <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
                     {language}
                 </MenuButton>
                 <MenuList
