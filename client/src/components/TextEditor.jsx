@@ -2,6 +2,9 @@ import React, { useState, useRef } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import "./TextEditor.css";
+import { useAddSnippet } from "../hooks/useAddSnippet";
+import { useUpdateSnippet } from "../hooks/useUpdateSnippet";
+import { useStore } from "../store/store";
 
 const modules = {
   toolbar: [
@@ -18,12 +21,34 @@ const formats = [
   "list", "bullet", "link", "blockquote", "code-block"
 ];
 
-const TextEditor = ({ isReadOnly = false, snippet = {} }) => {
-  const [editorContent, setEditorContent] = useState(""); 
+const TextEditor = ({ isReadOnly = false, snippet = {}, onClose="" }) => {
+  const [editorContent, setEditorContent] = useState( snippet.snippet &&  snippet.snippet); 
   const [isEditMode, setIsEditMode] = useState(true);
   const quillRef = useRef(null); 
-
+  const { addSnippet, loading: addingSnippet } = useAddSnippet();
+  const { updateSnippet, loading: updatingSnippet } = useUpdateSnippet();
   const handleToggleMode = () => setIsEditMode(prev => !prev);
+  const {snippetToBeEditedOrDeleted} = useStore()
+  const update = async () => {
+    try {
+      const res = await updateSnippet(snippet._id, editorContent)
+      console.log(res)
+      onClose()
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
+
+  const add = async () => {
+    try {
+      const res = await addSnippet(editorContent)
+      console.log(res)
+      onClose()
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
+
 
   return (
     <div className="editor-container">
@@ -32,7 +57,13 @@ const TextEditor = ({ isReadOnly = false, snippet = {} }) => {
           <button onClick={handleToggleMode} className="toggle-button">
             {isEditMode ? "Preview" : "Edit"}
           </button>
-          <button onClick={() => console.log(editorContent)} className="submit-button">
+          <button 
+          
+          onClick={
+            snippetToBeEditedOrDeleted ? update : add
+          } 
+          isLoading={updatingSnippet || addingSnippet}
+          className="submit-button">
             Submit
           </button>
         </div>

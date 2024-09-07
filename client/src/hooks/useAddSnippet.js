@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { useStore } from '../store/store'; // Import Zustand store
 
-
 export const useAddSnippet = () => {
-  const [loading, setLoading] = useState(false)
-  const { backend, token } = useStore(); 
+  const [loading, setLoading] = useState(false);
+  const { backend, token, snippets, setSnippets } = useStore(); 
 
   const addSnippet = async (snippet) => {
     setLoading(true);
@@ -20,6 +19,10 @@ export const useAddSnippet = () => {
       );
 
       console.log('Snippet added successfully:', res.data);
+
+      // Add the new snippet to the beginning of the snippets list
+      setSnippets([res.data.snippet, ...snippets]); 
+
       return res.data;
     } catch (error) {
       console.error('Error adding snippet:', error);

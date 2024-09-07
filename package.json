@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "cd server && nodemon app.js "
+    "serve": "cd server && nodemon app.js ",
+    "frontend": "cd client && npm i && npm run dev"
   },
   "keywords": [],
   "author": "",

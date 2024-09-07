@@ -3,7 +3,7 @@ import { useStore } from '../store/store'; // Import Zustand store
 
 export const useDeleteSnippet = () => {
   const [loading, setLoading] = useState(false);
-  const { backend, token } = useStore();
+  const { backend, token, snippets, setSnippets } = useStore();
 
   const deleteSnippet = async (snippetId) => {
     setLoading(true);
@@ -13,7 +13,8 @@ export const useDeleteSnippet = () => {
           authorization: `Bearer ${token}`,
         },
       });
-
+      const newSnippets = snippets.filter((snippet) => snippet._id !== snippetId);
+      setSnippets(newSnippets);
       console.log('Snippet deleted successfully:', res.data);
       return res.data;
     } catch (error) {

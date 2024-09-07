@@ -26,7 +26,7 @@ export const useStore = create((set, get) => ({
         })
     },
     snippetToBeEditedOrDeleted: "",
-    setsnippetToBeEditedOrDeleted: (id) => set({setsnippetToBeEditedOrDeleted: id}),
+    setSnippetToBeEditedOrDeleted: (snippet) => set({snippetToBeEditedOrDeleted: snippet}),
     // editor
     language: "javascript",
     code: '', 

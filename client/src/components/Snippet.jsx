@@ -17,11 +17,6 @@ const Snippet = ({snippet}) => {
       <TextEditor isReadOnly={true} snippet={snippet} />
       <p>{snippet.createdby}</p>
       </Box>
-      {
-        username == snippet.createdby && (
-          <Button>it's yours</Button>
-        )
-      }
     </div>
   )
 }
