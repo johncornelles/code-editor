@@ -12,7 +12,6 @@ export const addPost = async (req, res) => {
             createdby: req.user.username
         });
 
-        console.log(newSnippet, "FEw");
 
         return res.status(201).json({
             message: "Snippet created successfully",

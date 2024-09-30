@@ -15,10 +15,12 @@ import {
 } from '@chakra-ui/react';
 import { HamburgerIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
 import { useNavigate } from 'react-router-dom';
+import Cookies from "js-cookie"
 
 import Languages from '../components/Languages';
 
 const Navbar = () => {
+  const username = Cookies.get("username");
   const { colorMode, toggleColorMode } = useColorMode();
   const navigate = useNavigate();
 
@@ -47,21 +49,31 @@ const Navbar = () => {
         <MenuList>
           <MenuItem onClick={() => navigate('/snippets')}>Snippets</MenuItem>
           <MenuItem onClick={() => navigate('/')}>Home</MenuItem>
-          <MenuItem onClick={() => navigate('/login')}>Logout</MenuItem>
+          <MenuItem onClick={() => {
+            Cookies.remove("userID");
+            Cookies.remove("username");
+            Cookies.remove("jwt");
+            navigate('/login')
+          }}>Logout</MenuItem>
           <MenuItem onClick={() => navigate('/myposts')}>My Snippets</MenuItem>
         </MenuList>
       </Menu>
 
-      <Text paddingLeft="10px" fontSize="xl" fontWeight="bold">
-        Code Editor
+      <Text paddingLeft="20px" paddingRight="20px" fontSize="xl" fontWeight="bold">
+        Code Editor  
       </Text>
 
       <Spacer />
 
       <HStack spacing={4}>
+        <Text paddingLeft="20px" paddingRight="20px" fontWeight="bold">
+          Logged in as {username}
+      </Text>
+
         <Button onClick={toggleColorMode}>
           {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
         </Button>
+          
 
         <Languages />
       </HStack>

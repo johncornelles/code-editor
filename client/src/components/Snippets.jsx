@@ -21,19 +21,19 @@ import {
 } from '@chakra-ui/react';
 import TextEditor from './TextEditor';
 import Snippet from './Snippet';
-
+import Cookies from "js-cookie"
 
 const Snippets = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { snippets, snippetToBeEditedOrDeleted, setSnippets, setSnippetToBeEditedOrDeleted, username } = useStore();
   const { getSnippets, loading: loadingSnippets } = useGetSnippets();
   const { deleteSnippet, loading: deletingSnippet } = useDeleteSnippet();
-
+  const user = Cookies.get("username")
   const [currentSnippet, setCurrentSnippet] = useState(null);
   useEffect(() => {
     console.log(snippetToBeEditedOrDeleted)
   }, [snippetToBeEditedOrDeleted])
-  // Fetch snippets when the component mounts
+
   useEffect(() => {
     const fetchSnippets = async () => {
       try {
@@ -44,16 +44,6 @@ const Snippets = () => {
     };
     fetchSnippets();
   }, []);
-
-  // Function to handle adding a snippet
-  const handleAddSnippet = async () => {
-    try {
-      onOpen()
-      onClose();
-    } catch (error) {
-      console.error('Error adding snippet:', error.message);
-    }
-  };
 
   // Function to handle deleting a snippet
   const handleDeleteSnippet = async () => {
@@ -68,7 +58,7 @@ const Snippets = () => {
 
   return (
     <>
-
+      <h1 >Snippets for you to use</h1>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
