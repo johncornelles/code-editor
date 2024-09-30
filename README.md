@@ -43,7 +43,6 @@ This project is a comprehensive web application featuring a powerful code editor
 - **Monaco Editor**: Code editor for web applications.
 - **Chakra UI**: UI component library.
 - **Tailwind CSS**: Utility-first CSS framework.
-- **DaisyUI**: Tailwind CSS component library.
 - **MongoDB**: NoSQL database for storing data.
 - **Express.js**: Web framework for Node.js.
 - **Node.js**: JavaScript runtime for server-side code.
