@@ -55,7 +55,6 @@ const Navbar = () => {
             Cookies.remove("jwt");
             navigate('/login')
           }}>Logout</MenuItem>
-          <MenuItem onClick={() => navigate('/myposts')}>My Snippets</MenuItem>
         </MenuList>
       </Menu>
 

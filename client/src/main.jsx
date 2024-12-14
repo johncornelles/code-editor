@@ -9,7 +9,7 @@ import { BrowserRouter } from 'react-router-dom';
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     {/* Convert this to Chakra's BaseProvider to reduce load time once the project is done */}
-    <ChakraProvider theme={theme}>
+    <ChakraProvider theme={theme}x>
       <BrowserRouter>
         <App />
       </BrowserRouter>
