@@ -15,7 +15,7 @@ const Snippet = ({snippet}) => {
     <div>
       <Box>
       <TextEditor isReadOnly={true} snippet={snippet} />
-      <p>{snippet.createdby}</p>
+      
       </Box>
     </div>
   )

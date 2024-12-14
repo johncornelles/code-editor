@@ -20,7 +20,6 @@ const Home = () => {
     <div>      
       <Box>
         <CodeEditor />
-        <TextEditor />
       </Box>
     </div>
   );

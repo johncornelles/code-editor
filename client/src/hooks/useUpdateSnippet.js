@@ -8,6 +8,7 @@ export const useUpdateSnippet = () => {
   const updateSnippet = async (snippetId, updatedSnippet) => {
     setLoading(true);
     try {
+      // Send the update request to the backend
       const res = await backend.put(
         `/snippet/update/${snippetId}`,
         { snippet: updatedSnippet },
@@ -20,15 +21,21 @@ export const useUpdateSnippet = () => {
 
       console.log('Snippet updated successfully:', res.data);
 
-      // Update the snippet in the state
-      setSnippets(snippets.map((snippet) => 
-        snippet.id === snippetId ? res.data : snippet
-      ));
+
+      const updatedSnippets = snippets.map((snippet) =>
+        snippet._id === snippetId ? res.data.snippet : snippet
+      );
+
+
+      setSnippets(updatedSnippets);
+
+
+      console.log('Updated snippets array:', updatedSnippets);
 
       return res.data;
     } catch (error) {
       console.error('Error updating snippet:', error);
-      throw error;
+      throw error; // Re-throw the error for further handling if needed
     } finally {
       setLoading(false);
     }

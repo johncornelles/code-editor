@@ -35,7 +35,7 @@ export const useStore = create((set, get) => ({
         baseURL: "https://emkc.org/api/v2/piston/"
     }),
     backend: axios.create({
-        baseURL: "http://localhost:3000/"
+        baseURL: "https://code-editor-pm7s.onrender.com/"
     }),
 
     setLanguage: (lang) => set({ language: lang }),

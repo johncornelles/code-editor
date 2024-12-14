@@ -48,7 +48,7 @@ const Snippets = () => {
   // Function to handle deleting a snippet
   const handleDeleteSnippet = async () => {
     try {
-      const  response = await deleteSnippet(snippetToBeEditedOrDeleted._id);
+      const response = await deleteSnippet(snippetToBeEditedOrDeleted._id);
       console.log(response)
       onClose()
     } catch (error) {
@@ -67,26 +67,26 @@ const Snippets = () => {
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <TextEditor onClose={onClose} snippet={snippetToBeEditedOrDeleted ? snippetToBeEditedOrDeleted : {}}  />
+            <TextEditor onClose={onClose} snippet={snippetToBeEditedOrDeleted ? snippetToBeEditedOrDeleted : {}} />
           </ModalBody>
           <ModalFooter>
             <Button colorScheme='red' onClick={handleDeleteSnippet} isLoading={deletingSnippet} mr={3}>
               Delete
             </Button>
-          
-            <Button colorScheme='blue' onClick={onClose} ml={3}>
+
+            <Button colorScheme='purple' onClick={onClose} ml={3}>
               Close
             </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
 
-      <Button  marginRight={"auto"} marginLeft={"auto"} onClick={() => {
-                setSnippetToBeEditedOrDeleted(null);
-                onOpen();
-              }}>
-                Add a new snippet
-              </Button>
+      <Button colorScheme='purple' marginRight={"auto"} marginLeft={"auto"} onClick={() => {
+        setSnippetToBeEditedOrDeleted(null);
+        onOpen();
+      }}>
+        Add a new snippet
+      </Button>
 
       {loadingSnippets ? (
         <Spinner />
@@ -96,7 +96,7 @@ const Snippets = () => {
           <VStack key={snippet.id} spacing={4} align='stretch'>
             <Snippet snippet={snippet} />
             {username == snippet.createdby && (
-              <Button  marginRight={"auto"} marginLeft={"auto"} onClick={() => {
+              <Button colorScheme='purple' marginRight={"auto"} marginLeft={"auto"} onClick={() => {
                 setSnippetToBeEditedOrDeleted(snippet);
                 setCurrentSnippet(snippet);
                 onOpen();
